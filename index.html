@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ethan Gopikrishna — ENG2D Learning Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4efe3;
+    --paper-2:#efe8d8;
+    --card:#fbf8f0;
+    --ink:#221d16;
+    --ink-soft:#544b3d;
+    --accent:#9b3a2a;
+    --accent-soft:#c06a4f;
+    --gold:#a8842f;
+    --line:#d9cfba;
+    --shadow:rgba(40,30,18,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;
+    font-size:19px;
+    line-height:1.65;
+    font-optical-sizing:auto;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(155,58,42,.05), transparent 45%),
+      radial-gradient(circle at 85% 90%, rgba(168,132,47,.06), transparent 50%);
+  }
+  /* grain overlay */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.4;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:20;
+    background:rgba(244,239,227,.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  nav .brand{font-family:"Fraunces",serif;font-weight:600;letter-spacing:.02em;font-size:17px}
+  nav ul{list-style:none;display:flex;gap:22px;flex-wrap:wrap}
+  nav a{color:var(--ink-soft);text-decoration:none;font-size:15px;letter-spacing:.04em;text-transform:uppercase;position:relative;padding-bottom:3px}
+  nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--accent);transition:width .25s ease}
+  nav a:hover,nav a:focus-visible{color:var(--accent)}
+  nav a:hover::after,nav a:focus-visible::after{width:100%}
+
+  /* HERO */
+  header.hero{padding:90px 0 60px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:"Fraunces",serif;font-style:italic;color:var(--accent);font-size:18px;letter-spacing:.06em;opacity:0;animation:rise .7s ease forwards}
+  h1.title{
+    font-family:"Fraunces",serif;font-weight:800;line-height:.98;
+    font-size:clamp(46px,9vw,92px);letter-spacing:-.02em;margin:.18em 0 .25em;
+    opacity:0;animation:rise .7s ease .08s forwards;
+  }
+  .subtitle{font-family:"Fraunces",serif;font-style:italic;font-weight:400;color:var(--ink-soft);font-size:clamp(20px,3vw,26px);max-width:36ch;opacity:0;animation:rise .7s ease .16s forwards}
+  .lede{margin-top:26px;max-width:60ch;color:var(--ink);opacity:0;animation:rise .7s ease .24s forwards}
+  .rule{height:1px;background:var(--line);margin:34px 0 0}
+
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+  /* SECTIONS */
+  section.unit{padding:74px 0;border-bottom:1px solid var(--line);scroll-margin-top:80px}
+  .unit-head{display:flex;align-items:baseline;gap:18px;margin-bottom:34px;flex-wrap:wrap}
+  .unit-num{font-family:"Fraunces",serif;font-weight:800;font-size:clamp(40px,7vw,64px);color:var(--line);line-height:1;letter-spacing:-.03em}
+  .unit-title{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(26px,4.5vw,40px);letter-spacing:-.01em}
+  .subhead{font-family:"Fraunces",serif;font-style:italic;color:var(--accent);font-size:21px;margin:38px 0 16px}
+
+  /* CARDS */
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--accent);
+    border-radius:4px;
+    padding:24px 26px;
+    margin-bottom:20px;
+    box-shadow:0 1px 0 rgba(255,255,255,.6) inset, 0 10px 24px -18px var(--shadow);
+  }
+  .card .label{
+    font-family:"Fraunces",serif;font-weight:600;text-transform:uppercase;letter-spacing:.12em;
+    font-size:13px;color:var(--accent);margin-bottom:10px;display:block;
+  }
+  .card p{margin:0 0 12px}
+  .card p:last-child{margin-bottom:0}
+  .brainstorm{list-style:none;margin:6px 0 0;padding:0}
+  .brainstorm li{position:relative;padding-left:22px;margin-bottom:11px}
+  .brainstorm li::before{content:"";position:absolute;left:0;top:13px;width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
+  .brainstorm b{font-family:"Fraunces",serif}
+
+  /* EVIDENCE GALLERY */
+  .evidence-label{display:flex;align-items:center;gap:14px;margin:40px 0 18px}
+  .evidence-label span{font-family:"Fraunces",serif;font-style:italic;color:var(--ink-soft);font-size:20px}
+  .evidence-label .ln{flex:1;height:1px;background:var(--line)}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+  .shot{
+    border:none;background:#fff;padding:6px;border-radius:2px;cursor:zoom-in;
+    box-shadow:0 8px 20px -12px var(--shadow);transition:transform .2s ease, box-shadow .2s ease;
+    display:block;width:100%;
+  }
+  .shot:hover,.shot:focus-visible{transform:translateY(-4px) rotate(-.4deg);box-shadow:0 16px 30px -14px var(--shadow);outline:none}
+  .shot img{width:100%;height:200px;object-fit:cover;object-position:top center;display:block;border:1px solid #eee}
+  .shot figcaption{font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-align:center;padding:7px 4px 2px;text-transform:uppercase}
+  .pending{font-style:italic;color:var(--ink-soft);background:var(--paper-2);border:1px dashed var(--line);border-radius:4px;padding:18px 20px}
+
+  /* LIGHTBOX */
+  .lb{position:fixed;inset:0;z-index:50;background:rgba(24,18,12,.92);display:none;align-items:center;justify-content:center;padding:30px;backdrop-filter:blur(3px)}
+  .lb.open{display:flex}
+  .lb img{max-width:92vw;max-height:84vh;box-shadow:0 30px 80px -20px rgba(0,0,0,.7);background:#fff}
+  .lb .cap{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#f0e7d8;font-style:italic;font-size:15px}
+  .lb button{position:absolute;background:none;border:1px solid rgba(240,231,216,.5);color:#f0e7d8;width:46px;height:46px;border-radius:50%;font-size:22px;cursor:pointer;transition:background .2s}
+  .lb button:hover{background:rgba(240,231,216,.15)}
+  .lb .close{top:22px;right:22px}
+  .lb .prev{left:18px;top:50%;transform:translateY(-50%)}
+  .lb .next{right:18px;top:50%;transform:translateY(-50%)}
+
+  footer{padding:46px 0 70px;color:var(--ink-soft);font-size:15px}
+  footer em{font-family:"Fraunces",serif}
+
+  @media(max-width:560px){
+    body{font-size:18px}
+    .shot img{height:150px}
+    nav ul{gap:14px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">Ethan Gopikrishna</span>
+    <ul>
+      <li><a href="#unit1">Oral</a></li>
+      <li><a href="#unit2">Reading</a></li>
+      <li><a href="#unit3">Writing</a></li>
+      <li><a href="#unit4">Media</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">ENG2D &middot; Part One</p>
+    <h1 class="title">Learning<br>Portfolio</h1>
+    <p class="subtitle">Reflections, evidence, and next steps across the four strands of the course.</p>
+    <p class="lede">This is my reflection portfolio. It walks through what I did well, what I still need to work on, and the steps I am taking to get better in oral communication, reading, writing, and media. Every reflection is backed by my own work.</p>
+    <div class="rule"></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- UNIT 1 -->
+  <section class="unit" id="unit1">
+    <div class="unit-head"><span class="unit-num">01</span><h2 class="unit-title">Oral Communication</h2></div>
+
+    <div class="card">
+      <span class="label">Strength</span>
+      <p>The strategies I found to be successful in oral communication were those related to the audio-visual and non-verbal strategies. During my work on my Adora Svitak analysis, I created slides that each had one accent word, something to tie together the ideas such as &ldquo;Making the Argument Seen&rdquo; and &ldquo;The Power of No Constraints&rdquo; then I paired a direct quotation from her talk with a supporting image, such as the Kids Design Glass artwork and Anne Frank and Ruby Bridges photos. That meant that my evidence had to be visual and not auditory. This was confirmed with my delivery. I stood in an open, upright, forward-facing posture, while facing the audience, I used many open-handed gestures to emphasise key points, and I tried to make eye contact with the audience when explaining to them.</p>
+    </div>
+
+    <div class="card">
+      <span class="label">Area to Improve</span>
+      <p>My big focus is on how much I rely on my full script. I had my phone with the script in it for the entire presentation, and in the longer segments I actually read from my phone! It brought my eyes down, and snapped the eye contact that I had going. The speaker at the top level needs to adjust her speech to the room and when I read from my cell phone, it killed off my gesturing and eye contact throughout the presentation.</p>
+    </div>
+
+    <div class="card">
+      <span class="label">Next Step</span>
+      <p>My next step is to get the phone out of my hand. I would like to have a list of key points on the slides or on small cue cards, rather than a script. I&rsquo;ll practice aloud until I do it without reading the material, and then I&rsquo;ll record myself to see how I am doing with eye contact and pacing. I also have to do it earlier as well, because I was already a little late with the script, which was what made me stick with it in the first place.</p>
+    </div>
+
+    <div class="evidence-label"><span>Evidence</span><div class="ln"></div></div>
+    <div class="gallery">
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/adora-presentation-still-1.jpg" alt="Still from the Adora Svitak presentation showing the Audio-Visual Strategy slide"><figcaption>Adora presentation</figcaption></figure>
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/adora-presentation-still-2.jpg" alt="Still from the Adora Svitak presentation showing the Uninhibited Thinking slide"><figcaption>Adora presentation</figcaption></figure>
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/unit1-oral-reflection-p1.png" alt="Unit 1 oral reflection, page 1"><figcaption>Oral reflection p.1</figcaption></figure>
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/unit1-oral-reflection-p2.png" alt="Unit 1 oral reflection, page 2"><figcaption>Oral reflection p.2</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- UNIT 2 -->
+  <section class="unit" id="unit2">
+    <div class="unit-head"><span class="unit-num">02</span><h2 class="unit-title">Reading &amp; Literature Studies</h2></div>
+
+    <div class="card">
+      <span class="label">Strength</span>
+      <p>My greatest asset for reading is the ability to take some comprehension strategies and apply them to the stylistic aspect of a text to construct a true interpretation of it. If you want a picture of the future, imagine a boot stamping on a human face, forever, was a line that I used in my book club work in 1984. I mentioned the pictures and the symbolism of the foot as a symbol of oppression, the face as a symbol of people, the word forever, and how it made us see the Party didn&rsquo;t want order; it wanted endless oppression. I did the same with the last line, &ldquo;He loved Big Brother&rdquo;, reading the irony, and the coldness and finality of the tone, in order to argue that Winston&rsquo;s arc gets turned, and that the Party can rewrite a person&rsquo;s identity. I also referred to the &ldquo;2+2=5&rdquo; moment and its relation to &ldquo;real world propaganda.&rdquo;</p>
+    </div>
+
+    <div class="card">
+      <span class="label">Area to Improve</span>
+      <p>Things I need to work on are analysing features of the text along with stylistic elements rather than separately, and analysing form and features without support. In my rewritten &ldquo;Fish Sticks&rdquo; PEA I got to that level, but I needed Ms. R&rsquo;s help to do it. I&rsquo;m not in tune with tone and irony as it is part of the feature I&rsquo;m working on, but as a solo entity, and I want that to be the norm for me.</p>
+    </div>
+
+    <div class="card">
+      <span class="label">Next Step</span>
+      <p>My next step is to alter the way I&rsquo;m annotating so that every annotation I make to a stylistic choice is accompanied by the text feature it goes through. Then I want to write a whole new PEA for a text that I haven&rsquo;t seen before with no teacher assistance in order to prove that I can achieve that level without the teacher&rsquo;s assistance. I&rsquo;m also going to have a quick checklist that I&rsquo;m going to use before I say a paragraph is done: element to feature to meaning.</p>
+    </div>
+
+    <div class="evidence-label"><span>Evidence</span><div class="ln"></div></div>
+    <div class="gallery">
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/1984-discussion-2-p3.png" alt="1984 book club discussion organizer 2, quotation analysis page"><figcaption>1984 organizer (2)</figcaption></figure>
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/1984-discussion-2-p4.png" alt="1984 book club discussion organizer 2, connections page"><figcaption>1984 organizer (2)</figcaption></figure>
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/1984-discussion-4-p2.png" alt="1984 book club discussion organizer 4, He loved Big Brother analysis"><figcaption>1984 organizer (4)</figcaption></figure>
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/1984-discussion-4-p3.png" alt="1984 book club discussion organizer 4, connections page"><figcaption>1984 organizer (4)</figcaption></figure>
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/unit2-reading-reflection-p2.png" alt="Unit 2 reading reflection, goal-setting page"><figcaption>Reading reflection</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- UNIT 3 -->
+  <section class="unit" id="unit3">
+    <div class="unit-head"><span class="unit-num">03</span><h2 class="unit-title">Writing</h2></div>
+
+    <p class="subhead">Form and Style: &ldquo;Cinderella Murder Mystery&rdquo; PEA</p>
+
+    <div class="card">
+      <span class="label">Strength</span>
+      <p>My assets here are to use form and style to construct a clear argument. In my Cinderella murder mystery PEA, I chose the themes of the Prince&rsquo;s power over all others, his god complex and his motive to remain silent when a &ldquo;commoner&rdquo; is the victim of his murder. I reinforced these themes with specific evidence such as gloves behind the fountain, turning the clock forward, snapping the wand and constantly dusting his sleeves. I made it two chained PEAs with a topic sentence and an end sentence, and maintained the analytical tone throughout.</p>
+    </div>
+
+    <div class="card">
+      <span class="label">Area to Improve</span>
+      <p>I&rsquo;m thinking in terms of content and style I still need to improve on here. Content, I give more supporting details than I need. In the fairytale PEA, I stack a bunch of evidence one atop another, thus making the point more complicated than it needs to be rather than selecting the best one or two. With style, my formal register slips. I had brackets and side comments such as (crime scene) and (Cinderella&rsquo;s magic is going to expire earlier) and even an exclamation mark on (dusting his sleeves) which were all not part of formal writing.</p>
+    </div>
+
+    <div class="card">
+      <span class="label">Next Step</span>
+      <p>This is followed by a revision pass to focus. First, I&rsquo;ve trimmed my supporting details to the two or three best for each point. Then I go through and remove the informal brackets, side comments, and exclamation marks, and rearrange that information into the sentence. When I have a peer to read it I proofread it before I turn it in.</p>
+    </div>
+
+    <p class="subhead">Reflecting on My Skills: Creative Writing, &ldquo;The Spirit World&rdquo;</p>
+
+    <div class="card">
+      <span class="label">Strength</span>
+      <p>My voice and my descriptive detail are my strengths in my creative writing. In &ldquo;The Spirit World&rdquo; I wrote psychologically flawed but searching first person, such as &ldquo;I&rsquo;m not the sharpest tool in the shed,&rdquo; and spoke to make the world feel real, by using controlled imagery such as the &ldquo;soft kind of black&rdquo; sky filled with only white outlines, and the spirit family with their dotted eyes and triangle bodies. I maintained pace and dialogue was used to establish character.</p>
+    </div>
+
+    <div class="card">
+      <span class="label">Skill to Practice: Brainstorming</span>
+      <p>My main problem is to think of ideas and plan them before I begin to write. It wasn&rsquo;t planned, I wrote it down the road, and you can see it in the through line of the book. I&rsquo;m stuck on the idea of solving my problems, putting myself first, and connection rather than saying one thing. I introduce a subplot about the forgotten brother of the family and then never resolve that and I introduce a rule that if you kill a spirit, you&rsquo;ll disarm them, but that rule doesn&rsquo;t really come into effect because I just tell them that I&rsquo;ve already solved my problem by killing the king. Those are things you&rsquo;re doing to plan, not sentence level planning problems. I know I can plan well because I did for my Clint Smith analysis in my 5.1 Modelled Analysis sheet where I went through the before, during, and after breakdown, brainstormed the critical questions and planned my PEA before writing any words at all. I just need to apply that same planning to my creative writing and all it&rsquo;s related.</p>
+    </div>
+
+    <div class="card">
+      <span class="label">Next Step</span>
+      <p>My next step is to brainstorm in a set order prior to drafting. The one message comes first, then I find a character who has this message, then only include events and symbols that support this message, and finally only include subplots and rules that tie up. To demonstrate I can do it, I went back and wrote the brainstorm I should have done for &ldquo;The Spirit World&rdquo;:</p>
+      <ul class="brainstorm">
+        <li><b>Message:</b> Putting yourself first is the only way you are going to get to the bottom of the issue that is gnawing on you, and it is only when you do, that you can carry the people, and the legacy you care about.</li>
+        <li><b>Arc:</b> He begins avoiding and uncertain, then he picks himself up, then he builds up the strength to go back.</li>
+        <li><b>Symbols:</b> the inner state of the spirit world, the problem that is taking him over, his family pressure, his lack of feeling good enough, the king with a body that cannot be beaten by force, the sword that was given by his old friend, connection made into strength, the portal that is hope and the opportunity to return changed.</li>
+        <li><b>Subplot fix:</b> The lost brother story is actually important to the plot of this one because knowing that the portal is bi-directional gives the family some hope and it&rsquo;s also a reprieve for the hope he&rsquo;s had himself.</li>
+        <li><b>Rule payoff:</b> I already have the king disarmed by removing his sword, so his final line should tie to that theme that you don&rsquo;t overcome a problem like this by trying harder, you overcome it by changing your perspective.</li>
+      </ul>
+    </div>
+
+    <div class="evidence-label"><span>Evidence</span><div class="ln"></div></div>
+    <div class="gallery">
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/cinderella-pea-p2.png" alt="Cinderella murder mystery PEA paragraph"><figcaption>Cinderella PEA</figcaption></figure>
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/the-spirit-world-p1.png" alt="The Spirit World creative writing, page 1"><figcaption>The Spirit World p.1</figcaption></figure>
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/the-spirit-world-p2.png" alt="The Spirit World creative writing, page 2"><figcaption>The Spirit World p.2</figcaption></figure>
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/the-spirit-world-p3.png" alt="The Spirit World creative writing, page 3"><figcaption>The Spirit World p.3</figcaption></figure>
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/modelled-analysis-brainstorm-p1.png" alt="5.1 Modelled Analysis brainstorm sheet, page 1"><figcaption>5.1 brainstorm p.1</figcaption></figure>
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/modelled-analysis-brainstorm-p3.png" alt="5.1 Modelled Analysis brainstorm sheet, critical question page"><figcaption>5.1 brainstorm p.3</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- UNIT 4 -->
+  <section class="unit" id="unit4">
+    <div class="unit-head"><span class="unit-num">04</span><h2 class="unit-title">Media Studies: &ldquo;I, Duckman&rdquo;</h2></div>
+
+    <div class="card">
+      <span class="label">Strength</span>
+      <p>So what I&rsquo;m good at in media is carefully constructing an argument based on code. As I analysed the text of &ldquo;I, Duckman&rdquo;, I went over how the elements of the text create meaning and how the codes interact to make the elements indicate American dysfunction, demonstrating the &ldquo;Quotable Duckman&rdquo; prop and references to Citizen Kane&rsquo;s Rosebud and A Clockwork Orange, and the fact that a moral still prevails even if the comforting sitcom reset never comes. Avoiding a perfect plot and even altering my understanding of what an easy &ldquo;trojan horse&rdquo; angle is, when it arrived for the worldview of the show.</p>
+    </div>
+
+    <div class="card">
+      <span class="label">Area to Improve: Thesis Cohesion</span>
+      <p>I think the most challenging aspect of my thesis was to have a theme that I could stick to. I started with two different premises: the comedy theme, and the inversion of the sitcom form; and a general one that the programme shows &ldquo;dysfunction&rdquo; without ever defining it. It was only when I identified the specific idea and had both arguments support the idea that it came together. My thesis was that in Duckman, Everett Peck mocks American life in order to expose how an obsessive need for recognition replaces authentic human connection, he uses humor in his diction and takes apart some of the rules of the TV sitcom to make that point. So here are two arguments: my first is the desire for recognition and my second is the cost of recognition.</p>
+    </div>
+
+    <div class="card">
+      <span class="label">Next Step</span>
+      <p>Before I begin drafting, I first give the abstract idea in concrete terms and then check each of my body paragraphs to see if it&rsquo;s supporting that one idea. If a paragraph is attempting to make an argument other than the thesis, it is not coherent at this moment.</p>
+    </div>
+
+    <div class="evidence-label"><span>Evidence</span><div class="ln"></div></div>
+    <div class="gallery">
+      <figure class="shot" tabindex="0"><img loading="lazy" src="artifacts/dwadwwadda.png" alt="Thesis statement for the I, Duckman media analysis, colour-coded into text details, answer to the critical question, and arguments"><figcaption>I, Duckman thesis</figcaption></figure>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <p><em>ENG2D Learning Portfolio</em> &middot; Part One: Reflection Portfolio</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <img id="lbImg" src="" alt="">
+  <button class="next" id="lbNext" aria-label="Next">&#8250;</button>
+  <div class="cap" id="lbCap"></div>
+</div>
+
+<script>
+  (function(){
+    var shots = Array.prototype.slice.call(document.querySelectorAll('.shot'));
+    var lb = document.getElementById('lb');
+    var lbImg = document.getElementById('lbImg');
+    var lbCap = document.getElementById('lbCap');
+    var idx = 0;
+
+    function open(i){
+      idx = i;
+      var fig = shots[idx];
+      var img = fig.querySelector('img');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCap.textContent = fig.querySelector('figcaption').textContent;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+    function step(d){ open((idx + d + shots.length) % shots.length); }
+
+    shots.forEach(function(fig,i){
+      fig.addEventListener('click', function(){ open(i); });
+      fig.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(i); } });
+    });
+    document.getElementById('lbClose').addEventListener('click', close);
+    document.getElementById('lbPrev').addEventListener('click', function(){ step(-1); });
+    document.getElementById('lbNext').addEventListener('click', function(){ step(1); });
+    lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+    document.addEventListener('keydown', function(e){
+      if(!lb.classList.contains('open')) return;
+      if(e.key==='Escape') close();
+      else if(e.key==='ArrowLeft') step(-1);
+      else if(e.key==='ArrowRight') step(1);
+    });
+  })();
+</script>
+</body>
+</html>
